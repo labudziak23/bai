@@ -6,7 +6,28 @@
 	</head>
 	<body>
 		<script>
-			// a JavaScript code here ...
+		var body = document.getElementsByTagName('body')[0];
+		var tab = document.createElement("table");
+		tab.style.width = '20%';
+		tab.setAttribute('border', '1');
+
+		var row1 = tab.insertRow();
+		var row2 = tab.insertRow();
+
+		var cell1 = row1.insertCell(0);
+		cell1.appendChild(document.createTextNode('1'));
+
+		var cell2 = row1.insertCell(1);
+		cell2.appendChild(document.createTextNode('2'));
+		
+		var cell3 = row2.insertCell(0);
+		cell3.appendChild(document.createTextNode('3'));
+		
+		var cell4 = row2.insertCell(1);
+		cell4.appendChild(document.createTextNode('4'));
+		
+		body.appendChild(tab);
+
 			
 		</script>
 	</body>

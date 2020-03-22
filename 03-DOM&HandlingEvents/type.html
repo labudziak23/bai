@@ -20,10 +20,23 @@
 		Przeciw nim sterczy biała, wąska, zaostrzona,<br>
 		Jak głaz bodzący morze, reduta Ordona.</p>
 		
-		<textarea rows="15" cols="50"></textarea><br>
+		<textarea rows="15" cols="50" oninput="timer()" id="text"></textarea><br>
+		<p id="score"></p>
 		
 		<script>
-			// a JavaScript code here ...
+			var flag = true;
+			function timer(){
+				if(flag){
+					flag = false;
+					setTimeout(function(){
+						var text = document.getElementById("text").value;
+						var wordCount = text.split(' ').length;
+						var charCount = text.length;
+						var score = `Twoje wyniki,<br>Liczba słów wpisanych w 30s: ${wordCount},<br>Liczba znaków wpisanych w 30s: ${charCount}`;
+						document.getElementById("score").innerHTML = score;
+					},30000)
+				}				
+			}
 			
 		</script>
 		
