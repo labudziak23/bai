@@ -4,10 +4,38 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+
+    th {
+      width: 200px;
+      height: 25px;
+    }
+  </style>
+  <div id="app">
+    <table>
+      <tr>
+        <th v-for="header in headers">{{ header }}</th>
+      </tr>
+      <tr v-for="film in films">
+        <td v-for="field in fields">{{ film[field] }}</td>
+      </tr>
+    </table>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
       data: {
+        headers: ['Title', 'Year', 'Director', 'Budget'],
+        fields: ['title', 'year', 'director', 'budget'],
         films: [
           {
             title: 'Avatar',
@@ -33,8 +61,7 @@
             director: 'King Vidor',
             budget: 6000000
           }
-        ] 
-        }
+        ]         
       }
     });
   </script>
