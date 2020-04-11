@@ -15,13 +15,13 @@
 			function read(){
 				var request = new XMLHttpRequest();
 					request.onreadystatechange = function(){display(this);};
-					request.open("GET", "https://github.com/labudziak23/bai/blob/master/04-JSON%26DataTransfer/dane.json", true);
+					request.open("GET", "https://gist.githubusercontent.com/labudziak23/fea32e080b628008698e105e24bbafa7/raw/664aa272efcf0b9691e5b8041ded0e85ba09b034/dane.json", true);
 					request.send();
 			}
 			function display(r){
 				if(r.readyState == 4 && r.status == 200){
 					var object = JSON.parse(r.responseText);
-					document.getElementById("personalData").innerText = `My name is: ${object[0].name} ${object[0].surname}`;
+					document.getElementById("personalData").innerText = `My name is: ${object.name} ${object.surname}`;
 				}
 			}
 		</script>
