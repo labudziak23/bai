@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Charts</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+</head>
+  <body>
+    <title>GOLD Chart</title>
+    <canvas id="chart" width="600" height="600"></canvas>
+    <script>        
+            var request = new XMLHttpRequest();
+                request.onreadystatechange = display;
+                request.open("GET", "http://api.nbp.pl/api/cenyzlota/last/10", true);
+                request.send();
+			
+			function display(){
+				const { readyState, status, response } = this;
+
+                if (status === 200 && readyState === 4) {
+                    const responseData = JSON.parse(response);
+                    const context = document.getElementById('chart').getContext('2d');
+                    const chart = new Chart(context, {
+                        type: 'line',
+                        data: {
+                            labels: responseData.map((val) => val.data),
+                            datasets: [
+                                {
+                                    label: 'Gold Price',
+                                    backgroundColor: 'rgb(255, 215, 0)',
+                                    borderColor: 'rgb(165,42,42)',
+                                    data: responseData.map((val) => val.cena),
+                                }
+                            ]
+                        }
+                    });
+                }
+				
+			}        
+    </script>
+  </body>
+</html>

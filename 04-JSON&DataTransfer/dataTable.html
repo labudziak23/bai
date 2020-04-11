@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML DataTables</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+</head>
+  <body>
+    <h1>Table</h1>
+    <table id="table"></table>
+    <script>
+        $(document).ready( function (){
+				var request = new XMLHttpRequest();
+					request.onreadystatechange = display;
+					request.open("GET", "https://gist.githubusercontent.com/labudziak23/e829eb33f2ef2230359519bd428c1151/raw/c0db0594f8f2aff69797412e117f185823e84189/people.json", true);
+					request.send();
+			
+			function display(){
+				const { readyState, status, response } = this;
+
+                if (status === 200 && readyState === 4) {
+                    const data = JSON.parse(response);
+
+                    $('#table').DataTable({
+                        data: data,
+                        columns: [
+                            { data: 'age' },
+                            { data: 'country' },
+                            { data: 'email' },
+                            { data: 'name' },
+                            { data: 'surname' }
+                        ]
+                    });
+                }
+				
+			}
+        });
+    </script>
+  </body>
+</html>

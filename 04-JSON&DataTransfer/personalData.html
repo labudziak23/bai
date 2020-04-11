@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="button" value="click me" onclick="show()">
+    <ol>
+    </ol>
+    <script>
+        function show(){
+				var request = new XMLHttpRequest();
+					request.onreadystatechange = function(){display(this);};
+					request.open("GET", "https://gist.githubusercontent.com/labudziak23/e829eb33f2ef2230359519bd428c1151/raw/c0db0594f8f2aff69797412e117f185823e84189/people.json", true);
+					request.send();
+			}
+			function display(r){
+				if(r.readyState == 4 && r.status == 200){
+					var object = JSON.parse(r.responseText);
+                    for(i=0; i < object.length; i++){
+                        const peopleList = document.createElement('li');
+                        const row = document.getElementsByTagName('ol').innerText = object[i].name + " " + object[i].surname.toUpperCase() + ", " + object[i].country;
+                        peopleList.appendChild(document.createTextNode(row));
+                        document.getElementsByTagName('ol')[0].appendChild(peopleList);
+                    }
+				}
+			}
+    </script>
+  </body>
+</html>
