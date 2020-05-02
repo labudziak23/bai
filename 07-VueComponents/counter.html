@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <counter />
+  </div>
+
+  <script>
+    Vue.component('counter', {
+      template: `
+        <div>
+          {{ number }}
+          <button v-on:click="add">Dodaj</button>
+          <button v-on:click="sub">Odejmij</button>
+        </div>
+      `,
+      data: () => ({
+        number: 0,
+      }),
+      methods: {
+        add: function() { this.number++; },
+        sub: function() { this.number--; },
+      },
+    });
+
+    new Vue({
+      el: '#app',
+    });
+  </script>
+</body>
+</html>
